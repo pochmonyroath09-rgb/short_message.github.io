@@ -2,87 +2,178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Little Message for You</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Little Message for You 💌</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #ffe0ec, #dbeafe);
-            text-align: center;
-            padding: 40px 15px;
-            min-height: 100vh;
-            box-sizing: border-box;
-        }
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        .container {
-            max-width: 420px;
-            margin: 40px auto;
-            background: white;
-            padding: 30px 20px;
-            border-radius: 20px;
-            box-shadow: 0 8px 25px #00000015;
-        }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 35px 16px;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      color: #713b50;
+      background: linear-gradient(135deg, #fff0f5, #f8d9e8, #fce7f3);
+    }
 
-        h1 {
-            color: #e75480;
-        }
+    .card {
+      width: 100%;
+      max-width: 430px;
+      margin: 35px auto;
+      padding: 30px 22px;
+      border: 1px solid #ffffff;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.88);
+      box-shadow: 0 12px 35px #a64d791c;
+    }
 
-        p {
-            color: #666;
-        }
+    .heart {
+      font-size: 48px;
+      animation: heartbeat 1.5s infinite;
+    }
 
-        button {
-            display: block;
-            width: 100%;
-            padding: 14px;
-            margin: 12px 0;
-            border: none;
-            border-radius: 12px;
-            background: #ff85a2;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
+    h1 {
+      color: #d64f83;
+      font-size: 28px;
+    }
 
-        button:hover {
-            background: #e75480;
-        }
+    .subtitle {
+      line-height: 1.7;
+      color: #896b7a;
+    }
 
-        #message {
-            margin-top: 25px;
-            padding: 15px;
-            color: #b03060;
-            line-height: 1.7;
-            font-size: 18px;
-        }
-    </style>
+    .name-button {
+      width: 100%;
+      margin: 8px 0;
+      padding: 14px;
+      border: none;
+      border-radius: 14px;
+      background: #f8d3e3;
+      color: #8d3158;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .name-button:hover {
+      background: #e978a6;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    #message {
+      display: none;
+      margin-top: 22px;
+      padding: 20px 14px;
+      border-radius: 16px;
+      background: #fff0f6;
+      line-height: 1.8;
+      animation: appear 0.5s ease;
+    }
+
+    #message h2 {
+      color: #d64f83;
+      font-size: 20px;
+    }
+
+    .footer {
+      margin-top: 25px;
+      font-size: 12px;
+      color: #a58a98;
+    }
+
+    @keyframes heartbeat {
+      50% { transform: scale(1.15); }
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <div class="container">
-        <h1>💌 A Little Message</h1>
-        <p>Click your name to discover your message.</p>
+  <main class="card">
+    <div class="heart">💌</div>
 
-        <button onclick="showMessage('Alex')">Alex</button>
-        <button onclick="showMessage('Sophie')">Sophie</button>
-        <button onclick="showMessage('Friend')">My Friend</button>
+    <h1>A Little Message for You</h1>
 
-        <div id="message"></div>
-    </div>
+    <p class="subtitle">
+      Everyone deserves a little kindness.<br>
+      Choose your name and read your message. 💗
+    </p>
 
-    <script>
-        function showMessage(name) {
-            const messages = {
-                Alex: "Keep going. You are stronger than you think. 💪",
-                Sophie: "You deserve happiness and beautiful days. 🌷",
-                Friend: "Thank you for being part of my life. ❤️"
-            };
+    <button class="name-button"
+      onclick="showMessage('Alex')">
+      🌷 Alex
+    </button>
 
-            document.getElementById("message").textContent =
-                messages[name];
-        }
-    </script>
+    <button class="name-button"
+      onclick="showMessage('Sophie')">
+      🦋 Sophie
+    </button>
+
+    <button class="name-button"
+      onclick="showMessage('My Friend')">
+      💖 My Friend
+    </button>
+
+    <section id="message" aria-live="polite"></section>
+
+    <p class="footer">
+      Made with love, just for you ♡
+    </p>
+  </main>
+
+  <script>
+    const messages = {
+      "Alex": {
+        title: "Dear Alex 🌷",
+        text: "No matter how difficult life becomes, never stop believing in yourself. You are stronger than you think."
+      },
+
+      "Sophie": {
+        title: "Dear Sophie 🦋",
+        text: "I hope you always find a reason to smile. You deserve peaceful days, happiness, and beautiful memories."
+      },
+
+      "My Friend": {
+        title: "To My Friend 💖",
+        text: "Thank you for being part of my life. No matter how hard things get, remember that your efforts matter. Keep going!"
+      }
+    };
+
+    function showMessage(name) {
+      const messageBox = document.getElementById("message");
+      const message = messages[name];
+
+      messageBox.innerHTML = "";
+
+      const heading = document.createElement("h2");
+      heading.textContent = message.title;
+
+      const paragraph = document.createElement("p");
+      paragraph.textContent = message.text;
+
+      messageBox.append(heading, paragraph);
+      messageBox.style.display = "block";
+      messageBox.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+      });
+    }
+  </script>
 </body>
 </html>
