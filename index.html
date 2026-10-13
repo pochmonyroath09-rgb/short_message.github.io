@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Little Message for You</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffe0ec, #dbeafe);
+            text-align: center;
+            padding: 40px 15px;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 420px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px 20px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px #00000015;
+        }
+
+        h1 {
+            color: #e75480;
+        }
+
+        p {
+            color: #666;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            margin: 12px 0;
+            border: none;
+            border-radius: 12px;
+            background: #ff85a2;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #e75480;
+        }
+
+        #message {
+            margin-top: 25px;
+            padding: 15px;
+            color: #b03060;
+            line-height: 1.7;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>💌 A Little Message</h1>
+        <p>Click your name to discover your message.</p>
+
+        <button onclick="showMessage('Alex')">Alex</button>
+        <button onclick="showMessage('Sophie')">Sophie</button>
+        <button onclick="showMessage('Friend')">My Friend</button>
+
+        <div id="message"></div>
+    </div>
+
+    <script>
+        function showMessage(name) {
+            const messages = {
+                Alex: "Keep going. You are stronger than you think. 💪",
+                Sophie: "You deserve happiness and beautiful days. 🌷",
+                Friend: "Thank you for being part of my life. ❤️"
+            };
+
+            document.getElementById("message").textContent =
+                messages[name];
+        }
+    </script>
+</body>
+</html>
