@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Birthday message for you Bobiee 🎂💌</title>
+
+  <title>Happy Birthday, Bobiee! 🎂💌</title>
 
   <style>
     * {
@@ -14,163 +15,216 @@
     body {
       margin: 0;
       min-height: 100vh;
-      padding: 35px 16px;
+      padding: 30px 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       font-family: Arial, sans-serif;
-      text-align: center;
       color: #713b50;
-      background: linear-gradient(135deg, #fff0f5, #f8d9e8, #fce7f3);
+      background: linear-gradient(
+        135deg,
+        #fff0f5,
+        #f8d9e8,
+        #fce7f3
+      );
     }
 
     .card {
       width: 100%;
-      max-width: 430px;
-      margin: 35px auto;
-      padding: 30px 22px;
-      border: 1px solid #ffffff;
-      border-radius: 24px;
-      background: rgba(255, 255, 255, 0.88);
-      box-shadow: 0 12px 35px #a64d791c;
+      max-width: 460px;
+      margin: auto;
+      padding: 30px 24px;
+      text-align: center;
+      border: 2px solid white;
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 15px 40px #a64d7920;
     }
 
     .heart {
-      font-size: 48px;
+      font-size: 52px;
       animation: heartbeat 1.5s infinite;
     }
 
     h1 {
       color: #d64f83;
-      font-size: 28px;
+      font-size: 27px;
+      line-height: 1.4;
     }
 
     .subtitle {
-      line-height: 1.7;
       color: #896b7a;
+      font-size: 15px;
+      line-height: 1.8;
     }
 
     .name-button {
       width: 100%;
-      margin: 8px 0;
-      padding: 14px;
+      margin-top: 15px;
+      padding: 15px;
       border: none;
-      border-radius: 14px;
+      border-radius: 15px;
       background: #f8d3e3;
       color: #8d3158;
       font-size: 16px;
+      font-weight: bold;
       cursor: pointer;
-      transition: 0.25s;
+      transition: 0.3s;
     }
 
     .name-button:hover {
       background: #e978a6;
       color: white;
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px #e978a640;
     }
 
     #message {
       display: none;
-      margin-top: 22px;
-      padding: 20px 14px;
-      border-radius: 16px;
+      margin-top: 24px;
+      padding: 22px 17px;
+      border-radius: 18px;
       background: #fff0f6;
-      line-height: 1.8;
-      animation: appear 0.5s ease;
+      text-align: left;
+      line-height: 1.9;
+      font-size: 14px;
+      white-space: pre-line;
+      overflow-wrap: anywhere;
+      animation: appear 0.7s ease;
     }
 
     #message h2 {
       color: #d64f83;
-      font-size: 20px;
+      font-size: 21px;
+      text-align: center;
+    }
+
+    .closing {
+      text-align: center;
+      color: #d64f83;
+      font-weight: bold;
     }
 
     .footer {
       margin-top: 25px;
       font-size: 12px;
       color: #a58a98;
+      line-height: 1.8;
     }
 
     @keyframes heartbeat {
-      50% { transform: scale(1.15); }
+      50% {
+        transform: scale(1.15);
+      }
     }
 
     @keyframes appear {
       from {
         opacity: 0;
-        transform: translateY(8px);
+        transform: translateY(15px);
       }
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
+
+    @media (max-width: 400px) {
+      .card {
+        padding: 24px 17px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+    }
   </style>
 </head>
 
 <body>
+
   <main class="card">
+
     <div class="heart">💌</div>
 
-    <h1> Birthday message for you Bobiee 🎂💌</h1>
+    <h1>Happy Birthday, Bobiee! 🎂💗</h1>
 
     <p class="subtitle">
-      A letter for you, from Monyroath.<br>
-      click your name and read your message. 💗
+      A little letter for you, from Monyroath. 💌<br>
+      Someone special has a message for you.<br>
+      Click below to open your surprise! 🎀
     </p>
 
-    <button class="name-button"
-      onclick="showMessage('Jasmine(Meyhor)')">
-      🌷 Jasmine(Meyhor) 🌷
+    <button
+      class="name-button"
+      id="openButton"
+      onclick="showMessage()"
+      aria-expanded="false"
+      aria-controls="message">
+      💗 Open Your Birthday Letter 💗
     </button>
 
-    <section id="message" aria-live="polite"></section>
+    <section id="message" aria-live="polite">
+      <h2>Dear Jasmine (Meyhor) 🌷</h2>
+
+      Happy Birthday to my bestie!! 🎂❤️🎉
+
+      Another year older, another year crazier! 😭😂
+      I hope your special day is filled with happiness, love, laughter, and lots of cake. May all your wishes come true, and may this year bring you so many beautiful memories. 💗
+
+      Since you're in Grade 12 and graduating this year, I wish you the best of luck with your studies and exams. 🎓📚 I hope all your hard work pays off and that you achieve the results you've been dreaming of.
+
+      I know this year might be stressful, with so many things to study and worries about the future. But please don't forget to take care of yourself, get enough rest, and enjoy the little moments, too. You deserve happiness even on the hardest days. 🫶🏻
+
+      We're getting older, and soon we'll be stepping into a new chapter of life. 🥹❤️ I hope you achieve your dreams, meet wonderful people, and become the person you've always wanted to be.
+
+      No matter where life takes us after graduation, I hope we will always stay friends and make more crazy memories together. I don't want our friendship to become just a memory from our school days. 💗
+
+      And please, even after you graduate, don't act like you're too educated to know me anymore. 😭💀 I'll expose all your embarrassing moments if you do! HAHAHA! 😂
+
+      Also, please become successful and rich so you can treat me to food. Remember, best friends support each other, and I fully support your future bank account! 💸🤣
+
+      Jokes aside, I'm genuinely proud of you. I hope you find the courage to face every challenge, the strength to keep going when things get difficult, and the confidence to believe in yourself.
+
+      You don't have to have your whole future figured out right now. Just keep trying, keep learning, and take one step at a time. I believe you can do amazing things. 🎓🌷
+
+      Once again, HAPPY BIRTHDAY, BESTIE!! 🎂💗
+
+      May this new chapter bring you good health, beautiful memories, success in your exams, and a future full of opportunities. Keep smiling, keep fighting, and never give up on your dreams.
+
+      Thank you for being part of my life. I'm so lucky to have you as my friend.
+
+      <p class="closing">
+        Love you always, my crazy girl! 🫶🏻💗🎂
+        <br>
+        — From Monyroath 💌
+      </p>
+    </section>
 
     <p class="footer">
-      Made with love, just for you ♡
+      Made with love, just for you ♡<br>
+      A little website, a big wish. 🎀
     </p>
+
   </main>
 
- 
-<script>
-  const messages = {
-    "Jasmine": {
-      title: "Dear Jasmine 🌷",
-      text: `Happy Birthday to my bestie!! 🎂❤️🎉
+  <script>
+    function showMessage() {
+      const messageBox = document.getElementById("message");
+      const button = document.getElementById("openButton");
 
-Another year older, another year crazier! 😭😂 
-I hope your special day is filled with happiness, love, laughter, and lots of cake. 
-May all your wishes come true, and may this year bring you so many beautiful memories.
-Since you're in Grade 12 and graduating this year, I wish you the best of luck with your studies and exams. 🎓📚
-I hope all your hard work pays off and that you achieve the results you've been dreaming of. 
-I know this year might be stressful, with so many things to study and so many worries about the future, 
-but please don't forget to take care of yourself and enjoy the little moments, too.
-We're getting older, and soon we'll be stepping into a new chapter of life. 🥹❤️ 
-I hope you achieve your dreams, meet wonderful people, and become the person you've always wanted to be. 
-No matter where life takes you after graduation, I hope we will always stay friends and make more crazy memories together.
-And please, even after you graduate, don't act like you're too educated to know me anymore. 😭💀 
-I'll expose all your embarrassing moments if you do! HAHAHA! 😂
-Once again, Happy Birthday, bestie! I wish you happiness, good health, success in your exams, and a beautiful future ahead. 
-Keep smiling, keep fighting, and never give up on your dreams. I'm so proud of you, and I'm so lucky to have you as my friend. Love you always, my crazy girl! 🫶🏻💗🎂🎓`
+      messageBox.style.display = "block";
+      button.textContent = "💗 Your Letter Is Opened 💗";
+      button.setAttribute("aria-expanded", "true");
+      button.disabled = true;
+      button.style.cursor = "default";
+
+      messageBox.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+      });
     }
-  };
+  </script>
 
-  function showMessage(name) {
-    const messageBox = document.getElementById("message");
-    const message = messages[name];
-
-    if (!message) return;
-
-    messageBox.innerHTML = "";
-
-    const heading = document.createElement("h2");
-    heading.textContent = message.title;
-
-    const paragraph = document.createElement("p");
-    paragraph.textContent = message.text;
-
-    messageBox.append(heading, paragraph);
-    messageBox.style.display = "block";
-
-    messageBox.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest"
-    });
-  }
-</script>
+</body>
+</html>
