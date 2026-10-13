@@ -111,23 +111,13 @@
     <h1>A Little Message for You</h1>
 
     <p class="subtitle">
-      Everyone deserves a little kindness.<br>
+      A letter for you, from Monyroath.<br>
       Choose your name and read your message. 💗
     </p>
 
     <button class="name-button"
-      onclick="showMessage('Alex')">
-      🌷 Alex
-    </button>
-
-    <button class="name-button"
-      onclick="showMessage('Sophie')">
-      🦋 Sophie
-    </button>
-
-    <button class="name-button"
-      onclick="showMessage('My Friend')">
-      💖 My Friend
+      onclick="showMessage('Urt Tanghouy')">
+      🌷 Urt Tanghouy 🌷
     </button>
 
     <section id="message" aria-live="polite"></section>
@@ -137,43 +127,41 @@
     </p>
   </main>
 
-  <script>
-    const messages = {
-      "Alex": {
-        title: "Dear Alex 🌷",
-        text: "No matter how difficult life becomes, never stop believing in yourself. You are stronger than you think."
-      },
+ 
+<script>
+  const messages = {
+    "Urt Tanghouy": {
+      title: "Dear Tanghouy 🌷",
+      text: `In your upcoming competition, I hope you get the best rank you want!
 
-      "Sophie": {
-        title: "Dear Sophie 🦋",
-        text: "I hope you always find a reason to smile. You deserve peaceful days, happiness, and beautiful memories."
-      },
+Actually, you are competing against three people, and I hope you can achieve 1st place.
 
-      "My Friend": {
-        title: "To My Friend 💖",
-        text: "Thank you for being part of my life. No matter how hard things get, remember that your efforts matter. Keep going!"
-      }
-    };
+Do your best, and everyone will congratulate you on your result, including me.
 
-    function showMessage(name) {
-      const messageBox = document.getElementById("message");
-      const message = messages[name];
-
-      messageBox.innerHTML = "";
-
-      const heading = document.createElement("h2");
-      heading.textContent = message.title;
-
-      const paragraph = document.createElement("p");
-      paragraph.textContent = message.text;
-
-      messageBox.append(heading, paragraph);
-      messageBox.style.display = "block";
-      messageBox.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest"
-      });
+I believe you can do it. Susu, Houy!! ❤️🌷`
     }
-  </script>
-</body>
-</html>
+  };
+
+  function showMessage(name) {
+    const messageBox = document.getElementById("message");
+    const message = messages[name];
+
+    if (!message) return;
+
+    messageBox.innerHTML = "";
+
+    const heading = document.createElement("h2");
+    heading.textContent = message.title;
+
+    const paragraph = document.createElement("p");
+    paragraph.textContent = message.text;
+
+    messageBox.append(heading, paragraph);
+    messageBox.style.display = "block";
+
+    messageBox.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest"
+    });
+  }
+</script>
