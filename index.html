@@ -1,9 +1,10 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>A Little Message for You 💌</title>
 
   <style>
@@ -15,36 +16,48 @@
       margin: 0;
       min-height: 100vh;
       padding: 35px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-family: Arial, sans-serif;
       text-align: center;
       color: #713b50;
-      background: linear-gradient(135deg, #fff0f5, #f8d9e8, #fce7f3);
+      background: linear-gradient(
+        135deg,
+        #fff0f5,
+        #f8d9e8,
+        #fce7f3
+      );
     }
 
     .card {
       width: 100%;
       max-width: 430px;
-      margin: 35px auto;
+      margin: auto;
       padding: 30px 22px;
       border: 1px solid #ffffff;
       border-radius: 24px;
-      background: rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.9);
       box-shadow: 0 12px 35px #a64d791c;
     }
 
     .heart {
+      display: inline-block;
       font-size: 48px;
       animation: heartbeat 1.5s infinite;
     }
 
     h1 {
+      margin: 18px 0 12px;
       color: #d64f83;
       font-size: 28px;
+      line-height: 1.4;
     }
 
     .subtitle {
-      line-height: 1.7;
+      margin-bottom: 24px;
       color: #896b7a;
+      line-height: 1.8;
     }
 
     .name-button {
@@ -56,8 +69,11 @@
       background: #f8d3e3;
       color: #8d3158;
       font-size: 16px;
+      font-weight: bold;
       cursor: pointer;
-      transition: 0.25s;
+      transition: background 0.25s,
+                  color 0.25s,
+                  transform 0.25s;
     }
 
     .name-button:hover {
@@ -66,39 +82,77 @@
       transform: translateY(-2px);
     }
 
+    .name-button:focus-visible {
+      outline: 3px solid #d64f83;
+      outline-offset: 3px;
+    }
+
     #message {
       display: none;
       margin-top: 22px;
-      padding: 20px 14px;
+      padding: 20px 16px;
       border-radius: 16px;
       background: #fff0f6;
-      line-height: 1.8;
-      animation: appear 0.5s ease;
+      line-height: 1.9;
+      overflow-wrap: anywhere;
     }
 
     #message h2 {
+      margin-top: 0;
       color: #d64f83;
-      font-size: 20px;
+      font-size: 21px;
+    }
+
+    #message p {
+      margin-bottom: 0;
+      white-space: pre-line;
+    }
+
+    #message.visible {
+      display: block;
+      animation: appear 0.6s ease;
     }
 
     .footer {
       margin-top: 25px;
+      margin-bottom: 0;
       font-size: 12px;
       color: #a58a98;
     }
 
     @keyframes heartbeat {
-      50% { transform: scale(1.15); }
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.15);
+      }
     }
 
     @keyframes appear {
       from {
         opacity: 0;
-        transform: translateY(8px);
+        transform: translateY(10px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      html {
+        scroll-behavior: auto;
       }
     }
   </style>
@@ -106,61 +160,100 @@
 
 <body>
   <main class="card">
-    <div class="heart">💌</div>
+
+    <div class="heart" aria-hidden="true">💌</div>
 
     <h1>A Little Message for Tanghouy</h1>
 
     <p class="subtitle">
-      Special for Houy from Monyroath .<br>
-      Choose your name and read your message. 💗
+      Special for Houy, from Monyroath. 💗<br>
+      Tap your name to read your special message.
     </p>
 
-    <button class="name-button"
-      onclick="showMessage('Ut Tanghouy')">
-      🌷Ut Tanghouy🌷
+    <button
+      class="name-button"
+      type="button"
+      aria-controls="message"
+      aria-expanded="false"
+      onclick="showMessage('Ut Tanghouy', this)"
+    >
+      🌷 Ut Tanghouy 🌷
     </button>
-    <section id="message" aria-live="polite"></section>
+
+    <section
+      id="message"
+      aria-live="polite"
+      aria-atomic="true"
+    ></section>
 
     <p class="footer">
       Made with love, just for you ♡
     </p>
+
   </main>
 
+  <script>
+    const messages = {
+      "Ut Tanghouy": {
+        title: "Dear Tanghouy 🌷",
 
-<script>
-  const messages = {
-    "Urt Tanghouy": {
-      title: "Dear Tanghouy 🌷",
-      text: `In your upcoming competition, I hope you get the best rank you want!
+        text: `For your upcoming competition, I hope you achieve the rank you've been wishing for!
 
-Actually, you are competing against three people, and I hope you can achieve 1st place.
+You're competing against three other people, and I really hope you can achieve 1st place.
 
-Do your best, and everyone will congratulate you on your result, including me.
+Do your very best, and I hope everyone will congratulate you on your results, including me.
 
-I believe you can do it. Susu, Houy. Try your best!! ❤️🌷`
+I believe in you, and I know you can do it!
+
+Susu, Houy! Give it your all and do your best!! ❤️🌷`
+      }
+    };
+
+    function showMessage(name, button) {
+      const messageBox = document.getElementById("message");
+      const message = messages[name];
+
+      if (!message) {
+        messageBox.replaceChildren();
+
+        const errorText = document.createElement("p");
+        errorText.textContent =
+          "Oops! This message couldn't be found. 💗";
+
+        messageBox.appendChild(errorText);
+        messageBox.classList.add("visible");
+        return;
+      }
+
+      // Create the message safely.
+      const heading = document.createElement("h2");
+      heading.textContent = message.title;
+
+      const paragraph = document.createElement("p");
+      paragraph.textContent = message.text;
+
+      // Replace any previously displayed message.
+      messageBox.replaceChildren(heading, paragraph);
+
+      // Reveal the message.
+      messageBox.classList.remove("visible");
+
+      // Restart the appearance animation.
+      void messageBox.offsetWidth;
+
+      messageBox.classList.add("visible");
+      button.setAttribute("aria-expanded", "true");
+
+      // Gently scroll the message into view.
+      messageBox.scrollIntoView({
+        behavior: window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches ? "auto" : "smooth",
+        block: "nearest"
+      });
     }
-  };
+  </script>
 
-  function showMessage(name) {
-    const messageBox = document.getElementById("message");
-    const message = messages[name];
-
-    if (!message) return;
-
-    messageBox.innerHTML = "";
-
-    const heading = document.createElement("h2");
-    heading.textContent = message.title;
-
-    const paragraph = document.createElement("p");
-    paragraph.textContent = message.text;
-
-    messageBox.append(heading, paragraph);
-    messageBox.style.display = "block";
-
-    messageBox.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest"
-    });
-  }
-</script>
+</body>
+</html>
+```
